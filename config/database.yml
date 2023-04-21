@@ -23,7 +23,9 @@ default: &default
 
 development:
   <<: *default
-  database: networks_development
+  database: <%= ENV['DEV_DATABASE'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PW'] %>
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -57,7 +59,9 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: networks_test
+  database: <%= ENV['TEST_DATABASE'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['DATABASE_PW'] %>
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -78,8 +82,8 @@ test:
 #   production:
 #     url: <%= ENV['DATABASE_URL'] %>
 #
-production:
-  <<: *default
-  database: networks_production
-  username: networks
-  password: <%= ENV['NETWORKS_DATABASE_PASSWORD'] %>
+# production:
+#   <<: *default
+#   database: networks_production
+#   username: networks
+#   password: <%= ENV['NETWORKS_DATABASE_PASSWORD'] %>
